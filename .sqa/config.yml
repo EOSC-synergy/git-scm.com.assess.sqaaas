@@ -1,0 +1,56 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: feature/pynblint
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/git/git-scm.com:
+      branch: gh-pages
+      repo: https://github.com/git/git-scm.com
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/git/git-scm.com git:
+        commands:
+        - /usr/bin/env sh .sqa/script.dorky-chestnut-cassowary.sh
+        container: qc.acc_messy-persimmon-mouse
+  QC.Doc:
+    repos:
+      github.com/git/git-scm.com find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.sloppy-thistle-chameleon.sh
+        container: qc.doc_goopy-bronze-gharial
+      github.com/git/git-scm.com git:
+        commands:
+        - /usr/bin/env sh .sqa/script.homely-fuchsia-crocodile.sh
+        container: qc.doc_queasy-peach-millipede
+      github.com/git/git-scm.com markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.flimsy-corn-opossum.sh
+        container: qc.doc_homey-ultramarine-gharial
+  QC.Lic:
+    repos:
+      github.com/git/git-scm.com licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.scaly-smalt-chin.sh
+        container: qc.lic_gamy-carmine-bison
+  QC.Sty:
+    repos:
+      github.com/git/git-scm.com jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.slaphappy-chestnut-capuchin.sh
+        container: qc.sty_lovely-ochre-ibis
+      github.com/git/git-scm.com rubocop:
+        commands:
+        - /usr/bin/env sh .sqa/script.lovely-cardinal-budgerigar.sh
+        container: qc.sty_slimy-zucchini-squirt
+  QC.Ver:
+    repos:
+      github.com/git/git-scm.com get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.foggy-fuchsia-dodo.sh
+        container: qc.ver_hilly-burgundy-angelfish
+timeout: 5400
